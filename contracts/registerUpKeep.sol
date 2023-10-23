@@ -61,10 +61,10 @@ contract UpkeepIDConditionaltest {
         i_registrar = registrar;
     }
 
-    function registerAndPredictID(address contAdd) public returns(uint256 upkeepID) {
+    function registerAndPredictID(address contAdd,uint96 amount,uint32 gasLimit,string memory name) public returns(uint256 upkeepID) {
         // LINK must be approved for transfer - this can be done every time or once
         // with an infinite approval
-        RegistrationParams memory params = RegistrationParams("test","0x",contAdd,500000,msg.sender,0,"0x","0x","0x",1000000000000000000);
+        RegistrationParams memory params = RegistrationParams(name,"0x",contAdd,gasLimit,msg.sender,0,"0x","0x","0x",amount);
         require(i_link.allowance(msg.sender,address(this)) >= params.amount ,"user allowance is not enough");
         require(i_link.balanceOf(msg.sender) >= params.amount ,"user balance is not enough");
 

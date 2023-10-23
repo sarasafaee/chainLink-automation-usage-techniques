@@ -12,14 +12,14 @@ async function main() {
   // const UpKeep = await upKeep.deploy();
   const UpKeep = await upKeep.deploy("0x326c977e6efc84e512bb9c30f76e30c160ed06fb","0xb58E509b59538256854b2a223289160F83B23F92");
   const Token = token.attach(
-    "0x326c977e6efc84e512bb9c30f76e30c160ed06fb" // The deployed contract address on sepolia
+    "0x326c977e6efc84e512bb9c30f76e30c160ed06fb" // Link token address
   )
   
   console.log(" deployed to:", await UpKeep.address);
   // console.log("res:" , res)
   // 0x238cF4624623c51CE21aD265f2c18999c093Af2f
   Token.approve(UpKeep.address,ethers.utils.parseEther("1"));
-  const res = await UpKeep.callStatic.registerAndPredictID("0x238cF4624623c51CE21aD265f2c18999c093Af2f");
+  const res = await UpKeep.callStatic.registerAndPredictID("0x238cF4624623c51CE21aD265f2c18999c093Af2f",ethers.utils.parseEther("1"),500000,"name1");
   console.log(res)
 }
 
